@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webcam</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #imageForm {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    input[type="submit"] {
+      padding: 20px;
+      font-size: 24px;
+      width: 100%;
+    }
+
+    #canvas,
+    #link,
+    #link_uguu,
+    #qrcode,
+    #restart-btn {
+      display: none;
+    }
+    .timer {
+    font-size: 24px;
+    margin-top: 10px;
+   }
+  </style>
+  <script defer type="module" src="assets/js/appWebcam.js"></script>
+</head>
+<body>
+  <form id="imageForm">
+    <input type="submit" value="Take Image">
+  </form>
+  <canvas id="canvas" width="200" height="200"></canvas>
+  <a href="" id="link"></a>
+  <a href="" id="link_uguu"></a>
+  <img src="" alt="" id="qrcode">
+  <input type="button" id="restart-btn" value="Restart">
+</body>
+</html>
