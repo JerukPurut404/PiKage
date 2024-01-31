@@ -1,0 +1,15 @@
+Onderzoeksverslag:
+
+Ik ben begonnen met het verkennen van verschillende mogelijkheden om een Bluetooth-verbinding op te zetten als output, zodat gebruikers foto's naar mijn website kunnen sturen. Ik heb verschillende Bluetooth-modules en bibliotheken onderzocht, zoals pybluez in Python en bluetooth.js in JavaScript. Helaas kon ik geen betrouwbare oplossing vinden die werkte met alle apparaten en besturingssystemen.
+
+Vervolgens richtte ik me op het hosten van de website met behulp van Flask en Python. Ik wilde de volledige controle hebben over de host en de flexibiliteit om de functionaliteiten aan te passen. Na wat experimenteren merkte ik echter dat het opzetten van een Flask-webserver en het implementeren van de vereiste functionaliteiten meer tijd kostte dan ik had verwacht.
+
+Om niet achter te raken op schema, heb ik besloten om een database aan te maken in MaCloud en de website daar te hosten. Dit gaf me de mogelijkheid om me volledig te richten op de front-end ontwikkeling. Ik gebruikte een combinatie van PHP en Javascript om de functionaliteiten te implementeren. PHP werd gebruikt om met de database te communiceren en de gegevens te verwerken, terwijl Javascript werd gebruikt voor de interactieve elementen en het gebruik van de WebCamAPI.
+
+Om de afbeeldingen op te slaan, besloot ik gebruik te maken van Uguu, een externe filehosting service. Hierdoor kon ik me richten op de kernfunctionaliteiten van de website zonder me zorgen te hoeven maken over het opzetten van een eigen uploadsysteem.
+
+Hoewel ik tevreden ben met de resultaten tot nu toe, zie ik zeker nog ruimte voor verbetering. Een idee dat ik had was het toevoegen van een touchscreen display als input, zodat gebruikers de website kunnen bedienen met behulp van een grafische interface. Dit zou een intuïtievere manier bieden om foto's te selecteren en te versturen.
+
+Daarnaast overweeg ik om een output te implementeren in de vorm van een QR-code of afbeelding. Hierdoor kunnen gebruikers gemakkelijk de gegenereerde afbeelding delen met anderen of deze opslaan op hun apparaat.
+
+Kortom, hoewel ik mijn oorspronkelijke doelen niet helemaal binnen de gestelde tijd heb kunnen bereiken, ben ik toch tevreden met de resultaten. Er zijn echter nog vele mogelijkheden voor verbetering en uitbreiding, en ik kijk ernaar uit om deze in de toekomst te verkennen.

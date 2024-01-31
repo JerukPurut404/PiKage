@@ -60,6 +60,7 @@ Dit PHP-script heeft de volgende functies:
 2. `insertImageInDb`: Deze functie voegt de gegevens van de afbeelding toe aan de database.
 3. `createLink`: Deze functie genereert een downloadlink voor de afbeelding.
 4. `UguuAPI`: Deze functie maakt gebruik van de Uguu API om de afbeelding naar een externe server te uploaden.
+5. `deleteExpiredItems`: Deze functie verwijdert afbeeldingen die langer dan 3 uur geleden zijn geüpload uit de database en het bestandssysteem.
 
 De script gebruikt ook de volgende externe bronnen:
 - "database.php": Een bestand dat de databaseverbinding tot stand brengt.
@@ -92,6 +93,10 @@ De script gebruikt ook de volgende externe bronnen:
 
 4. `UguuAPI($curl, $filename)`: Deze functie maakt gebruik van de Uguu API om de afbeelding naar een externe server te uploaden. Het heeft de cURL-resource en het bestandsnaam als parameters. Het retourneert de URL van de geüploade afbeelding.
 
+5. `deleteExpiredItems($conn)`: Verwijdert afbeeldingen die langer dan 3 uur geleden zijn geüpload uit de database en het bestandssysteem.
+
+
+
 ## Hoofdgedeelte van de code
 
 In het hoofdgedeelte van de code worden de volgende stappen uitgevoerd:
@@ -119,6 +124,7 @@ De output van het script is een JSON-string met de volgende structuren:
 - `message`: Een bericht met aanvullende informatie over de upload.
 - `downloadlink`: De downloadlink voor de afbeelding.
 - `upload_path`: Het uploadpad van de afbeelding op de externe server.
+- `deleted_files`: De bestanden die zijn gedeleted indien er zijn.
 
 Hier is een voorbeeld van de output:
 
@@ -127,13 +133,14 @@ Hier is een voorbeeld van de output:
   "succeeded": true,
   "message": "",
   "downloadlink": "https://example.com/imagedownload.php?link=123456789",
-  "upload_path": "https://a.uguu.se/abcdefgh.png"
+  "upload_path": "https://a.uguu.se/abcdefgh.png",
+  "deleted_files": "Deleted files: filename1.png, filename2.png"
 }
 ```
 
 ## Conclusie
 
-Deze code is een PHP-script dat een afbeelding uploadt naar een server en vervolgens de uploadlink en het pad van de afbeelding retourneert.
+Deze code is een PHP-script dat een afbeelding uploadt naar een server en vervolgens de uploadlink en het pad van de afbeelding retourneert. Het script maakt ook gebruik van de Uguu API om de afbeelding naar een externe server te uploaden. Daarnaast verwijdert het script ook afbeeldingen die langer dan 3 uur geleden zijn geüpload om de serverruimte op te schonen.
 
 
 # Code Documentatie webcamupload.html - Webcam Pagina

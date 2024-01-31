@@ -25,6 +25,36 @@ function createLink($fileid){
   return $link;
 }
 
+function deleteExpiredItems($conn) {
+  $currentDateTime = date('Y-m-d H:i:s');
+  $expiredDateTime = date('Y-m-d H:i:s', strtotime('-3 hours'));
+
+  $stmt = $conn->prepare('SELECT id, `filename` FROM photos WHERE uploadDateTime < ?');
+  $stmt->bind_param('s', $expiredDateTime);
+  $stmt->execute();
+  $stmt->bind_result($id, $filename);
+  var_dump($stmt);
+
+  $deletedFiles = [];
+  var_dump($deletedFiles);
+  while ($stmt->fetch()) {
+    $deletedFiles[] = $filename;
+    unlink($filename); 
+  }
+
+  $stmt->close();
+
+  if (!empty($deletedFiles)) {
+    $deletedFilesString = implode(', ', $deletedFiles);
+    $stmt = $conn->prepare('DELETE FROM photos WHERE id IN ('.implode(',', $deletedIds).')');
+    $stmt->execute();
+    $stmt->close();
+    return 'Deleted files: '.$deletedFilesString;
+  } else {
+    return 'No files deleted.';
+  }
+}
+
 function UguuAPI($curl, $filename){
   curl_setopt($curl, CURLOPT_URL, "https://uguu.se/upload");
   curl_setopt($curl, CURLOPT_POST, true);
@@ -37,7 +67,7 @@ function UguuAPI($curl, $filename){
   return $json_response['files'][0]['url'];
 }
 
-$response=['succeeded' => false, 'message' => '', 'downloadlink' => null, 'upload_path' => null];
+$response=['succeeded' => false, 'message' => '', 'downloadlink' => null, 'upload_path' => null, 'deleted_files' => null];
 
 $file = $_FILES['image'];
 if ($file['error'] == 0){
@@ -50,6 +80,7 @@ if ($file['error'] == 0){
   $response['succeeded'] = true;
   $response['downloadlink'] = $link;
   $response['upload_path'] = UguuAPI($curl, $filename);
+  $response['deleted_files'] = deleteExpiredItems($conn);
 }
 else{
   $response['message'] = 'error during upload ' . $file['error'];
